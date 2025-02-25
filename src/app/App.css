@@ -1,0 +1,21 @@
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.loading {
+  width: 100%;
+  text-align: center;
+}
+
+body {
+  max-height: 100vh;
+  position: relative;
+  overflow: auto;
+}
+
+.tree-wrapper {
+  padding: 3px;
+}

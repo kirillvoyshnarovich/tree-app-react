@@ -1,0 +1,25 @@
+.tree-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.tree-item { 
+    display: flex;
+    gap: 5px;
+    align-items: center; 
+    cursor: pointer;
+    min-height: 35px;
+}
+
+.tree-item__expand-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tree-item__name {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
