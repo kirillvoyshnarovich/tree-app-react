@@ -19,3 +19,8 @@ body {
 .tree-wrapper {
   padding: 3px;
 }
+
+.error {
+  font-size: 20px;
+  color: red;
+}

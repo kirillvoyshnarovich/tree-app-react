@@ -8,13 +8,17 @@ import CircularProgress from '@mui/material/CircularProgress';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { DeleteNodeDialogProps } from '../../types/DeleteNodeDialog';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../app/store/store';
+import { clearError } from '../../app/store/treeSlice';
 
 export default function DeleteNodeDialog({ open, onClose, onConfirm, name }: DeleteNodeDialogProps) {
   const [isLoading, setIsLoading] = useState(false);
   
   const theme = useTheme();
   const fullWindows = useMediaQuery(theme.breakpoints.down('sm'));
-
+  const dispatch = useDispatch<AppDispatch>();
+  
   const handleConfirm = async () => {
     setIsLoading(true);
     try {
@@ -24,6 +28,9 @@ export default function DeleteNodeDialog({ open, onClose, onConfirm, name }: Del
     } finally {
       setIsLoading(false);
       onClose();
+      setTimeout(() => {
+        dispatch(clearError());
+      }, 5000);
     }
   };
 

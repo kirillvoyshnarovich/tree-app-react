@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchTree } from './store/treeThunks';
 import { RootState, AppDispatch } from './store/store';
-import Tree from '../components/Tree/Tree';
+import Tree from '../components/Tree/tree';
 import './App.css';
 
 export default function App() {
@@ -16,17 +16,16 @@ export default function App() {
     dispatch(fetchTree());
   }, [dispatch]);
 
-  if (status === 'failed') {
-    return <div>Error: {error}</div>;
-  }
-
   if (!tree) {
-    return <div>No tree data available.</div>;
+    return <div>No tree data</div>;
   }
 
   return (
-    <div className="tree-wrapper">
-      <Tree node={tree} />
-    </div>
+    <>
+      {status === 'failed' && error ? <div className='error'>Error: {error}</div> : ''}
+      <div className="tree-wrapper">
+        <Tree node={tree} />
+      </div>
+    </>
   );
 }

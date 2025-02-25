@@ -6,7 +6,7 @@ export interface TreeNode {
 
 export interface TreeState {
   data: TreeNode | null;
-  status: 'loading' | 'succeeded' | 'failed';
+  status: 'loading' | 'failed' | 'succeeded';
   error: string | null;
   expandedNodes: Set<number>;
   activeNode: number | null

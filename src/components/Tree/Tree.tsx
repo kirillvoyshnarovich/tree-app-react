@@ -49,9 +49,7 @@ const Tree = ({ node }: TreeProps) => {
   const handleToggle = () => {
     setShowButtons(!showButtons);
     dispatch(setExpandedNodes(node.id));
-    if(node.id) {
-      dispatch(setActiveNode(node.id));
-    }
+    dispatch(setActiveNode(node.id));
   };
 
   const isActive = activeNodeId === node.id;

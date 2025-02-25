@@ -9,6 +9,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { AddNodeDialogProps } from '../../types/AddNodeDialog';
 import { useTheme } from '@mui/material/styles';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../app/store/store';
+import { clearError } from '../../app/store/treeSlice';
 
 export default function AddNodeDialog({ open, onClose, onSave }: AddNodeDialogProps) {
   const [name, setName] = useState('');
@@ -16,6 +19,7 @@ export default function AddNodeDialog({ open, onClose, onSave }: AddNodeDialogPr
   
   const theme = useTheme();
   const fullWindows = useMediaQuery(theme.breakpoints.down('sm'));
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSave = async () => {
     setIsLoading(true);
@@ -27,6 +31,9 @@ export default function AddNodeDialog({ open, onClose, onSave }: AddNodeDialogPr
     } finally {
       setIsLoading(false);
       onClose();
+      setTimeout(() => {
+        dispatch(clearError());
+      }, 5000);
     }
   };
 

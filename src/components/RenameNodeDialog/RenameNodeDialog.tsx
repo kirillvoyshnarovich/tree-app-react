@@ -9,12 +9,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { RenameNodeDialogProps } from '../../types/RenameNodeDialog';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../app/store/store';
+import { clearError } from '../../app/store/treeSlice';
 
 export default function RenameNodeDialog({ open, onClose, onSave, currentName }: RenameNodeDialogProps) {
   const [name, setName] = useState(currentName);
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
   const fullWindows = useMediaQuery(theme.breakpoints.down('sm'));
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSave = async () => {
     setIsLoading(true);
@@ -25,6 +29,9 @@ export default function RenameNodeDialog({ open, onClose, onSave, currentName }:
     } finally {
       setIsLoading(false);
       onClose();
+      setTimeout(() => {
+        dispatch(clearError());
+      }, 5000);
     }
   };
 
